@@ -1,0 +1,19 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/api/dialogflow/route": "/api/dialogflow",
+  "/api/register/route": "/api/register",
+  "/api/subscribe/route": "/api/subscribe",
+  "/api/test-db/route": "/api/test-db",
+  "/api/test-env/route": "/api/test-env",
+  "/auth/page": "/auth",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/pages/about/page": "/pages/about",
+  "/pages/admissions/page": "/pages/admissions",
+  "/pages/campus/page": "/pages/campus",
+  "/pages/contact/page": "/pages/contact",
+  "/pages/faculty/page": "/pages/faculty",
+  "/pages/programs/page": "/pages/programs",
+  "/student-portal/page": "/student-portal"
+}

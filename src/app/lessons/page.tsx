@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { is } from 'zod/locales';
 
 export default function LessonsPage() {
   const { theme } = useTheme();
@@ -276,7 +277,7 @@ export default function LessonsPage() {
                         : 'bg-white border-slate-200'
                     }`}
                   >
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 pt-10">
                       <div className="flex items-center justify-between mb-4">
                         <div
                           className={`p-3 rounded-lg bg-gradient-to-r ${lesson.color}`}
@@ -328,7 +329,9 @@ export default function LessonsPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-4 text-sm">
                           <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                            <Clock
+                              className={`w-4 h-4 ${isDark && 'text-white'}`}
+                            />
                             <span
                               className={
                                 isDark ? 'text-slate-400' : 'text-slate-600'
@@ -338,7 +341,9 @@ export default function LessonsPage() {
                             </span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Users className="w-4 h-4" />
+                            <Users
+                              className={`w-4 h-4 ${isDark && 'text-white'}`}
+                            />
                             <span
                               className={
                                 isDark ? 'text-slate-400' : 'text-slate-600'
@@ -369,7 +374,9 @@ export default function LessonsPage() {
                           {lesson.price}
                         </span>
                         <Button className="flex items-center gap-2">
-                          <Play className="w-4 h-4" />
+                          <Play
+                            className={`w-4 h-4 ${isDark && 'text-white'}`}
+                          />
                           Start Learning
                         </Button>
                       </div>

@@ -356,7 +356,7 @@ export default function TeachersPage() {
                       : 'bg-white border-slate-200'
                   }`}
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 pt-10">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="relative">
                         <div className="w-20 h-20 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center text-white font-bold text-2xl">

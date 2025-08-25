@@ -332,7 +332,7 @@ export default function Home() {
                       </Button>
                     </motion.div>
                   </Link>
-                  <Link href="/tutors">
+                  <Link href="/teachers">
                     <motion.div
                       whileHover={buttonHover}
                       whileTap={{ scale: 0.95 }}

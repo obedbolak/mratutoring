@@ -256,7 +256,7 @@ export default function ResourcesPage() {
                         : 'bg-white border-slate-200'
                     }`}
                   >
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 pt-3">
                       <div className="flex items-center justify-between mb-4">
                         <div
                           className={`p-3 rounded-lg bg-gradient-to-r ${resource.color}`}

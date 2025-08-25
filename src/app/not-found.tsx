@@ -27,6 +27,24 @@ export default function NotFoundPage() {
   const isDark = theme === 'dark';
   const [countdown, setCountdown] = useState(10);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [floatingElements, setFloatingElements] = useState<
+    Array<{
+      left: number;
+      top: number;
+      duration: number;
+      delay: number;
+    }>
+  >([]);
+
+  useEffect(() => {
+    const elements = [...Array(6)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }));
+    setFloatingElements(elements);
+  }, []);
 
   // Auto-redirect countdown
   useEffect(() => {
@@ -319,7 +337,7 @@ export default function NotFoundPage() {
                             : 'bg-white border-slate-200 hover:border-slate-300'
                         }`}
                       >
-                        <CardContent className="p-6 text-center">
+                        <CardContent className="p-6 text-center pt-5">
                           <motion.div
                             className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${page.color} mb-4`}
                             whileHover={{
@@ -439,23 +457,23 @@ export default function NotFoundPage() {
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, index) => (
+        {floatingElements.map((element, index) => (
           <motion.div
             key={index}
             className={`absolute w-2 h-2 rounded-full ${
               isDark ? 'bg-indigo-400/20' : 'bg-indigo-600/20'
             }`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${element.left}%`,
+              top: `${element.top}%`,
             }}
             animate={{
               y: [0, -20, 0],
               opacity: [0.2, 0.8, 0.2],
               transition: {
-                duration: 3 + Math.random() * 2,
+                duration: element.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: element.delay,
               },
             }}
           />
