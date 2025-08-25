@@ -4,7 +4,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import Link from 'next/link';
 import {
   Download,
   FileText,
@@ -12,9 +11,6 @@ import {
   BookOpen,
   Calculator,
   Atom,
-  Award,
-  Search,
-  Filter,
   ExternalLink,
 } from 'lucide-react';
 import { motion } from 'framer-motion';

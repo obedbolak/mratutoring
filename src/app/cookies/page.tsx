@@ -155,8 +155,8 @@ export default function CookiePage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } max-w-3xl mx-auto mb-6`}
             >
-              Learn about how MisterA's uses cookies to improve your experience
-              and customize your preferences.
+              Learn about how MisterA&apos;s uses cookies to improve your
+              experience and customize your preferences.
             </p>
             <div
               className={`text-sm ${
@@ -198,8 +198,8 @@ export default function CookiePage() {
                     isDark ? 'text-indigo-200' : 'text-slate-600'
                   } mb-6`}
                 >
-                  Choose which types of cookies you'd like to accept. You can
-                  change these settings at any time.
+                  Choose which types of cookies you&apos;d like to accept. You
+                  can change these settings at any time.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button onClick={handleAcceptAll} size="lg">
@@ -522,8 +522,8 @@ export default function CookiePage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } mb-8`}
             >
-              If you have any questions about our use of cookies, please don't
-              hesitate to contact us.
+              If you have any questions about our use of cookies, please
+              don&apos;t hesitate to contact us.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg">Contact Support</Button>

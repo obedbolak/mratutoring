@@ -12,7 +12,6 @@ import {
   BookOpen,
   Users,
   ArrowLeft,
-  Compass,
   HelpCircle,
   MessageCircle,
   TrendingUp,
@@ -238,11 +237,12 @@ export default function NotFoundPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } mb-2`}
             >
-              The page you're looking for seems to have gone on a study break.
+              The page you&apos;re looking for seems to have gone on a study
+              break.
             </p>
             <p className={`${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              Don't worry, we'll help you get back on track with your learning
-              journey!
+              Don&apos;t worry, we&apos;ll help you get back on track with your
+              learning journey!
             </p>
           </motion.div>
 
@@ -262,7 +262,7 @@ export default function NotFoundPage() {
                   {action.href ? (
                     <Link href={action.href}>
                       <Button
-                        variant={action.variant}
+                        variant="primary"
                         size="lg"
                         className="flex items-center gap-2"
                       >
@@ -272,7 +272,7 @@ export default function NotFoundPage() {
                     </Link>
                   ) : (
                     <Button
-                      variant={action.variant}
+                      variant="primary"
                       size="lg"
                       onClick={action.onClick}
                       className="flex items-center gap-2"
@@ -384,7 +384,7 @@ export default function NotFoundPage() {
                 >
                   Studies show that students who use personalized tutoring
                   improve their grades by an average of 30%. Why not find a
-                  tutor while you're here?
+                  tutor while you&apos;re here?
                 </p>
               </CardContent>
             </Card>

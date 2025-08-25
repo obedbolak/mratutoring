@@ -4,13 +4,11 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import Link from 'next/link';
 import {
   MapPin,
   Clock,
   Users,
   DollarSign,
-  Briefcase,
   GraduationCap,
   Heart,
   TrendingUp,
@@ -19,7 +17,6 @@ import {
   Car,
   Shield,
   ArrowRight,
-  Star,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -262,9 +259,9 @@ export default function CareersPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } max-w-3xl mx-auto mb-8`}
             >
-              Be part of a team that's revolutionizing education in Cameroon.
-              We're looking for passionate individuals who share our vision of
-              making quality education accessible to all.
+              Be part of a team that&apos;s revolutionizing education in
+              Cameroon. We&apos;re looking for passionate individuals who share
+              our vision of making quality education accessible to all.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg px-8 py-4">
@@ -669,16 +666,16 @@ export default function CareersPage() {
                 isDark ? 'text-white' : 'text-slate-900'
               } mb-6`}
             >
-              Don't See the Right Role?
+              Don&apos;t See the Right Role?
             </h2>
             <p
               className={`text-lg ${
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } mb-8`}
             >
-              We're always looking for talented individuals who share our
-              passion for education. Send us your resume and tell us how you'd
-              like to contribute.
+              We&apos;re always looking for talented individuals who share our
+              passion for education. Send us your resume and tell us how
+              you&apos;d like to contribute.
             </p>
             <Button size="lg" className="text-lg px-8 py-4">
               Send Us Your Resume

@@ -4,19 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import {
-  Check,
-  Star,
-  Users,
-  Video,
-  MessageCircle,
-  Calendar,
-  Award,
-  BookOpen,
-  Clock,
-  Shield,
-  Zap,
-} from 'lucide-react';
+import { Check, Star, Users, Award, BookOpen, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -671,8 +659,8 @@ export default function PricingPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } mb-8`}
             >
-              Join thousands of students and tutors already using MisterA's to
-              achieve their goals.
+              Join thousands of students and tutors already using MisterA&apos;s
+              to achieve their goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="text-lg px-8 py-4">

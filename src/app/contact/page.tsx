@@ -4,17 +4,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  MessageCircle,
-  Send,
-  User,
-  BookOpen,
-  HelpCircle,
-} from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -141,8 +131,8 @@ export default function ContactPage() {
               } max-w-3xl mx-auto`}
             >
               Have questions about our platform, need help finding a tutor, or
-              want to provide feedback? We're here to help and would love to
-              hear from you.
+              want to provide feedback? We&apos;re here to help and would love
+              to hear from you.
             </p>
           </motion.div>
 

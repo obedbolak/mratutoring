@@ -4,18 +4,13 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import Link from 'next/link';
 import {
   MapPin,
   Star,
   Clock,
-  Award,
-  Users,
   MessageCircle,
   Calendar,
   CheckCircle,
-  Filter,
-  Search,
   GraduationCap,
   Calculator,
   Atom,

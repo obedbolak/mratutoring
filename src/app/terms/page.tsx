@@ -168,7 +168,7 @@ Liability Limitations:
               } max-w-3xl mx-auto mb-6`}
             >
               Please read these Terms of Service carefully before using
-              MisterA's platform. By using our service, you agree to these
+              MisterA&apos;s platform. By using our service, you agree to these
               terms.
             </p>
             <div
@@ -318,8 +318,8 @@ Liability Limitations:
                     isDark ? 'text-slate-400' : 'text-slate-600'
                   } mb-4`}
                 >
-                  We may update these terms. You'll be notified of significant
-                  changes.
+                  We may update these terms. You&apos;ll be notified of
+                  significant changes.
                 </p>
                 <p
                   className={`text-sm ${

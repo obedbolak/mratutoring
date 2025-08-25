@@ -6,16 +6,11 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
 import Link from 'next/link';
 import {
-  Calendar,
-  Clock,
-  User,
   ArrowRight,
   Search,
-  Tag,
   TrendingUp,
   BookOpen,
   Users,
-  Award,
   Lightbulb,
 } from 'lucide-react';
 import { motion } from 'framer-motion';

@@ -4,7 +4,6 @@
 import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import Link from 'next/link';
 import {
   Target,
   Eye,
@@ -18,7 +17,6 @@ import {
   MapPin,
   Linkedin,
   Twitter,
-  Facebook,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -151,7 +149,7 @@ export default function AboutPage() {
             >
               About
               <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent block">
-                MisterA's Platform
+                MisterA&apos;s Platform
               </span>
             </h1>
             <p
@@ -159,9 +157,9 @@ export default function AboutPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } max-w-3xl mx-auto mb-12`}
             >
-              We're on a mission to make quality education accessible to every
-              student in Nigeria by connecting them with the best home teachers
-              and learning resources.
+              We&apos;re on a mission to make quality education accessible to
+              every student in Nigeria by connecting them with the best home
+              teachers and learning resources.
             </p>
 
             {/* Stats */}
@@ -272,7 +270,7 @@ export default function AboutPage() {
                 To become the leading educational platform in Africa, where
                 every student has access to excellent teaching and every
                 qualified teacher can build a meaningful career making a
-                difference in students' lives.
+                difference in students&apos; lives.
               </p>
               <div className="flex items-center gap-3">
                 <Eye className="w-6 h-6 text-indigo-600" />
@@ -311,7 +309,7 @@ export default function AboutPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } max-w-2xl mx-auto`}
             >
-              We've made it simple to find the perfect tutor and start your
+              We&apos;ve made it simple to find the perfect tutor and start your
               learning journey.
             </p>
           </motion.div>
@@ -568,8 +566,8 @@ export default function AboutPage() {
                 isDark ? 'text-slate-300' : 'text-slate-600'
               } mb-8`}
             >
-              Have questions or want to learn more about our platform? We'd love
-              to hear from you.
+              Have questions or want to learn more about our platform? We&apos;d
+              love to hear from you.
             </p>
 
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">

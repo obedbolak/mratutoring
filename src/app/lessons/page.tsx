@@ -4,7 +4,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button, Card, CardContent } from '@/components/ui';
-import Link from 'next/link';
 import {
   Calculator,
   Atom,
@@ -14,8 +13,6 @@ import {
   Star,
   Users,
   Play,
-  Filter,
-  Search,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';

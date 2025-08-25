@@ -584,7 +584,7 @@ export default function Home() {
                 icon: Users,
                 color: 'from-teal-500 to-cyan-500',
               },
-            ].map((subject, index) => {
+            ].map((subject) => {
               const Icon = subject.icon;
               return (
                 <motion.div
@@ -712,7 +712,7 @@ export default function Home() {
                               isDark ? 'text-slate-300' : 'text-slate-600'
                             }`}
                           >
-                            "{testimonial.text}"
+                            {testimonial.text}
                           </p>
                         </div>
 

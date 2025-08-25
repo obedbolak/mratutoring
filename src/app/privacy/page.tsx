@@ -112,7 +112,8 @@ export default function PrivacyPage() {
               } max-w-3xl mx-auto mb-6`}
             >
               Your privacy is important to us. This policy explains how
-              MisterA's collects, uses, and protects your personal information.
+              MisterA&apos;s collects, uses, and protects your personal
+              information.
             </p>
             <div
               className={`text-sm ${
@@ -225,8 +226,8 @@ export default function PrivacyPage() {
                   } mb-6`}
                 >
                   If you have any questions about this Privacy Policy or how we
-                  handle your data, please don't hesitate to contact our Data
-                  Protection Officer.
+                  handle your data, please don&apos;t hesitate to contact our
+                  Data Protection Officer.
                 </p>
                 <div
                   className={`text-sm ${
