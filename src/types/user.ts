@@ -1,25 +1,22 @@
 // src/types/user.ts
 import { ObjectId } from 'mongodb';
 
+// src/types/user.ts
 export interface User {
   _id?: ObjectId;
   name: string;
   email: string;
-  password?: string; // Optional for OAuth users
+  password?: string;
   image?: string;
   provider: 'credentials' | 'google';
   providerId?: string;
   verified: boolean;
-
   role: 'student' | 'teacher' | 'admin';
   profile?: {
+    subjects: string[];
+    level: string;
     bio?: string;
-    phone?: string;
-    dateOfBirth?: Date;
-    subjects?: string[];
-    level?: 'O-Level' | 'A-Level' | 'Both';
-    location?: string;
-    institution?: string;
+    expertise?: string[];
   };
   verificationToken?: string;
   verificationTokenExpiry?: Date;
@@ -48,6 +45,13 @@ export interface RegisterData {
   email: string;
   password: string;
   role?: 'student' | 'teacher';
+  subjects?: string[];
+  level?:
+    | 'O-Level'
+    | 'A-Level'
+    | 'Cambridge IGCSE'
+    | 'Cambridge Checkpoint'
+    | 'International Baccalauréat';
 }
 
 export interface AuthResponse {

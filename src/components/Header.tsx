@@ -47,7 +47,6 @@ export default function Header() {
     'Computer Science Basics',
     'Chemistry Experiment',
     'Physics Experiment',
-
     'Computer Science Experiment',
   ];
 
@@ -123,6 +122,11 @@ export default function Header() {
     console.log('Searching for:', suggestion);
   };
 
+  const handleLogoutClick = () => {
+    setIsDropdownOpen(false);
+    logout();
+  };
+
   const isDark = theme === 'dark';
 
   const navBackground = isDark
@@ -140,6 +144,12 @@ export default function Header() {
   const searchInputStyle = isDark
     ? 'bg-slate-800 border-slate-600 text-slate-200 placeholder-slate-400 focus:border-indigo-400 focus:ring-indigo-400/20'
     : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-indigo-500 focus:ring-indigo-500/20';
+
+  // Theme-based icon colors
+  const iconPrimary = isDark ? 'text-slate-200' : 'text-slate-700';
+  const iconSecondary = isDark ? 'text-slate-400' : 'text-slate-500';
+  const iconMuted = isDark ? 'text-slate-500' : 'text-slate-400';
+  const iconAccent = isDark ? 'text-indigo-400' : 'text-indigo-600';
 
   return (
     <header className={`${navBackground} sticky top-0 z-50`}>
@@ -167,13 +177,7 @@ export default function Header() {
               <div className="relative">
                 <Search
                   className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 ${
-                    isSearchFocused
-                      ? isDark
-                        ? 'text-indigo-400'
-                        : 'text-indigo-500'
-                      : isDark
-                      ? 'text-slate-400'
-                      : 'text-slate-500'
+                    isSearchFocused ? iconAccent : iconSecondary
                   } transition-colors duration-200`}
                 />
                 <input
@@ -213,11 +217,7 @@ export default function Header() {
                   {/* Trending Searches */}
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp
-                        className={`w-4 h-4 ${
-                          isDark ? 'text-indigo-400' : 'text-indigo-500'
-                        }`}
-                      />
+                      <TrendingUp className={`w-4 h-4 ${iconAccent}`} />
                       <span
                         className={`text-sm font-medium ${
                           isDark ? 'text-slate-200' : 'text-slate-700'
@@ -247,11 +247,7 @@ export default function Header() {
                   {recentSearches.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Clock
-                          className={`w-4 h-4 ${
-                            isDark ? 'text-slate-400' : 'text-slate-500'
-                          }`}
-                        />
+                        <Clock className={`w-4 h-4 ${iconSecondary}`} />
                         <span
                           className={`text-sm font-medium ${
                             isDark ? 'text-slate-200' : 'text-slate-700'
@@ -319,13 +315,13 @@ export default function Header() {
                         className="rounded-full"
                       />
                     ) : (
-                      <User className="w-4 h-4" />
+                      <User className={`w-4 h-4 ${iconPrimary}`} />
                     )}
                     <span className="text-sm font-medium hidden lg:block">
                       {user?.name || 'Account'}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
+                      className={`w-4 h-4 ${iconSecondary} transition-transform duration-200 ${
                         isDropdownOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -366,7 +362,7 @@ export default function Header() {
                                 : 'text-slate-700 hover:bg-slate-50'
                             } transition-colors duration-200 cursor-pointer`}
                           >
-                            <BookOpen className="w-4 h-4" />
+                            <BookOpen className={`w-4 h-4 ${iconPrimary}`} />
                             <span>Dashboard</span>
                           </div>
                         </Link>
@@ -379,7 +375,7 @@ export default function Header() {
                                 : 'text-slate-700 hover:bg-slate-50'
                             } transition-colors duration-200 cursor-pointer`}
                           >
-                            <Settings className="w-4 h-4" />
+                            <Settings className={`w-4 h-4 ${iconPrimary}`} />
                             <span>Settings</span>
                           </div>
                         </Link>
@@ -391,17 +387,18 @@ export default function Header() {
                         />
 
                         <button
-                          onClick={() => {
-                            logout();
-                            closeDropdown();
-                          }}
+                          onClick={handleLogoutClick}
                           className={`w-full px-4 py-3 flex items-center gap-3 ${
                             isDark
                               ? 'text-red-400 hover:bg-slate-700'
                               : 'text-red-600 hover:bg-slate-50'
-                          } transition-colors duration-200`}
+                          } transition-colors duration-200 text-left`}
                         >
-                          <LogOut className="w-4 h-4" />
+                          <LogOut
+                            className={`w-4 h-4 ${
+                              isDark ? 'text-red-400' : 'text-red-600'
+                            }`}
+                          />
                           <span>Sign Out</span>
                         </button>
                       </div>
@@ -433,7 +430,7 @@ export default function Header() {
               {theme === 'dark' ? (
                 <Sun className="w-5 h-5 text-yellow-500" />
               ) : (
-                <Moon className="w-5 h-5 text-slate-600" />
+                <Moon className={`w-5 h-5 ${iconSecondary}`} />
               )}
             </button>
           </nav>
@@ -454,7 +451,11 @@ export default function Header() {
               }`}
               aria-label="Toggle search"
             >
-              <Search className="w-5 h-5" />
+              <Search
+                className={`w-5 h-5 ${
+                  isMobileSearchOpen ? iconAccent : iconPrimary
+                }`}
+              />
             </button>
 
             <button
@@ -467,7 +468,7 @@ export default function Header() {
               {theme === 'dark' ? (
                 <Sun className="w-5 h-5 text-yellow-500" />
               ) : (
-                <Moon className="w-5 h-5 text-slate-600" />
+                <Moon className={`w-5 h-5 ${iconSecondary}`} />
               )}
             </button>
 
@@ -479,9 +480,9 @@ export default function Header() {
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className={`w-6 h-6 ${iconPrimary}`} />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className={`w-6 h-6 ${iconPrimary}`} />
               )}
             </button>
           </div>
@@ -493,9 +494,7 @@ export default function Header() {
             <form onSubmit={handleSearchSubmit} className="relative">
               <div className="relative">
                 <Search
-                  className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 ${
-                    isDark ? 'text-slate-400' : 'text-slate-500'
-                  }`}
+                  className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 ${iconSecondary}`}
                 />
                 <input
                   ref={mobileSearchRef}
@@ -531,30 +530,58 @@ export default function Header() {
             } border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link href="/lessons" className={`block px-3 py-2 ${navItem}`}>
+              <Link
+                href="/lessons"
+                onClick={toggleMobileMenu}
+                className={`block px-3 py-2 ${navItem}`}
+              >
                 Lessons
               </Link>
-              <Link href="/resources" className={`block px-3 py-2 ${navItem}`}>
+              <Link
+                href="/resources"
+                onClick={toggleMobileMenu}
+                className={`block px-3 py-2 ${navItem}`}
+              >
                 Resources
               </Link>
-              <Link href="/teachers" className={`block px-3 py-2 ${navItem}`}>
+              <Link
+                href="/teachers"
+                onClick={toggleMobileMenu}
+                className={`block px-3 py-2 ${navItem}`}
+              >
                 Teachers
               </Link>
-              <Link href="/about" className={`block px-3 py-2 ${navItem}`}>
+              <Link
+                href="/about"
+                onClick={toggleMobileMenu}
+                className={`block px-3 py-2 ${navItem}`}
+              >
                 About
               </Link>
 
               {!isAuthenticated && (
                 <div className="pt-4 space-y-2">
-                  <Link href="/auth?mode=login" className="block">
+                  <Link
+                    href="/auth?mode=login"
+                    onClick={toggleMobileMenu}
+                    className="block"
+                  >
                     <Button variant="ghost" className="w-full justify-start">
-                      <LogIn className="w-4 h-4 mr-2" />
+                      <LogIn className={`w-4 h-4 mr-2 ${iconPrimary}`} />
                       Sign In
                     </Button>
                   </Link>
-                  <Link href="/auth?mode=register" className="block">
+                  <Link
+                    href="/auth?mode=register"
+                    onClick={toggleMobileMenu}
+                    className="block"
+                  >
                     <Button className="w-full justify-start">
-                      <UserPlus className="w-4 h-4 mr-2" />
+                      <UserPlus
+                        className={`w-4 h-4 mr-2 ${
+                          isDark ? 'text-white' : 'text-white'
+                        }`}
+                      />
                       Get Started
                     </Button>
                   </Link>
