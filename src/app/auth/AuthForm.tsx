@@ -19,7 +19,6 @@ import {
   Eye,
   EyeOff,
   Chrome,
-  ArrowLeft,
   Mail,
   CheckCircle,
   Loader2,
@@ -168,7 +167,10 @@ interface FormContextType {
   errors: Record<string, string>;
   currentStep: RegistrationStep | 'verification';
   registeredEmail: string;
-  updateFormData: (field: string, value: any) => void;
+  updateFormData: (
+    field: string,
+    value: string | string[] | boolean | EducationLevel | UserRole
+  ) => void;
   setErrors: (errors: Record<string, string>) => void;
   setCurrentStep: (step: RegistrationStep | 'verification') => void;
   setRegisteredEmail: (email: string) => void;
@@ -207,7 +209,11 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   >('role');
   const [registeredEmail, setRegisteredEmail] = useState('');
 
-  const updateFormData = (field: string, value: any) => {
+  // Update the updateFormData function in FormProvider (around line 210)
+  const updateFormData = (
+    field: string,
+    value: string | string[] | boolean | EducationLevel | UserRole
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {

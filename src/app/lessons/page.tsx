@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { is } from 'zod/locales';
 
 export default function LessonsPage() {
   const { theme } = useTheme();

@@ -232,7 +232,6 @@ export default function Header() {
   // Theme-based icon colors
   const iconPrimary = isDark ? 'text-slate-200' : 'text-slate-700';
   const iconSecondary = isDark ? 'text-slate-400' : 'text-slate-500';
-  const iconMuted = isDark ? 'text-slate-500' : 'text-slate-400';
   const iconAccent = isDark ? 'text-indigo-400' : 'text-indigo-600';
 
   return (

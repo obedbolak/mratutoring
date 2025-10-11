@@ -23,10 +23,11 @@ import {
   Search,
 } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function TeacherDashboard() {
-  const { toggleTheme, theme } = useTheme();
-  const [user] = useState({ name: 'Prof. Anderson' });
+  const { theme } = useTheme();
+  const { user } = useAuth();
   const isDark = theme === 'dark';
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -554,7 +555,7 @@ export default function TeacherDashboard() {
                           isDark ? 'text-white' : 'text-slate-900'
                         }`}
                       >
-                        Today's Schedule
+                        Today&apos;s Schedule
                       </h3>
                       <Button variant="ghost" size="sm">
                         View Calendar

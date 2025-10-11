@@ -5,7 +5,7 @@ import { verifyUserEmail } from '@/lib/auth-utils';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -14,7 +14,9 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const user = await verifyUserEmail(params.userId);
+    // Await the params
+    const { userId } = await params;
+    const user = await verifyUserEmail(userId);
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });

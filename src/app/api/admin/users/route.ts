@@ -3,6 +3,14 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getDatabase } from '@/lib/mongodb';
 import { User } from '@/types/user';
+import { Filter } from 'mongodb';
+
+// Define valid roles based on your User type
+type UserRole = 'admin' | 'student' | 'teacher';
+
+const isValidRole = (role: string): role is UserRole => {
+  return ['admin', 'student', 'teacher'].includes(role);
+};
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,16 +25,19 @@ export async function GET(request: NextRequest) {
 
     // Get query parameters for filtering
     const { searchParams } = new URL(request.url);
-    const role = searchParams.get('role');
+    const roleParam = searchParams.get('role');
     const verified = searchParams.get('verified');
     const limit = parseInt(searchParams.get('limit') || '100');
     const skip = parseInt(searchParams.get('skip') || '0');
 
-    // Build query
-    const query: any = {};
-    if (role && role !== 'all') {
-      query.role = role;
+    // Build query with proper typing
+    const query: Filter<User> = {};
+
+    // Validate and assign role
+    if (roleParam && roleParam !== 'all' && isValidRole(roleParam)) {
+      query.role = roleParam;
     }
+
     if (verified && verified !== 'all') {
       query.verified = verified === 'true';
     }

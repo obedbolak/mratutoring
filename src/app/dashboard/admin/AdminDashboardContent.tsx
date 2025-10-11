@@ -9,12 +9,10 @@ import {
   CheckCircle,
   XCircle,
   Search,
-  Filter,
   Download,
   Eye,
   Trash2,
   UserCheck,
-  UserX,
   Activity,
   Bell,
   Settings,
@@ -825,7 +823,15 @@ export default function AdminDashboard() {
                 <div>
                   <select
                     value={roleFilter}
-                    onChange={(e) => setRoleFilter(e.target.value as any)}
+                    onChange={(e) =>
+                      setRoleFilter(
+                        e.target.value as
+                          | 'all'
+                          | 'student'
+                          | 'teacher'
+                          | 'admin'
+                      )
+                    }
                     className={`w-full px-4 py-2 rounded-lg border ${
                       isDark
                         ? 'bg-slate-900 border-slate-700 text-white'
@@ -841,7 +847,11 @@ export default function AdminDashboard() {
                 <div>
                   <select
                     value={verifiedFilter}
-                    onChange={(e) => setVerifiedFilter(e.target.value as any)}
+                    onChange={(e) =>
+                      setVerifiedFilter(
+                        e.target.value as 'all' | 'verified' | 'unverified'
+                      )
+                    }
                     className={`w-full px-4 py-2 rounded-lg border ${
                       isDark
                         ? 'bg-slate-900 border-slate-700 text-white'

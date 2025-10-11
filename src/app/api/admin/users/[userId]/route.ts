@@ -5,7 +5,7 @@ import { deleteUser, findUserById } from '@/lib/auth-utils';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -14,14 +14,16 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const user = await findUserById(params.userId);
+    // Await the params
+    const { userId } = await params;
+    const user = await findUserById(userId);
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
     // Remove sensitive data
-    const { password, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
 
     return NextResponse.json({ user: userWithoutPassword });
   } catch (error) {
@@ -35,7 +37,7 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -44,15 +46,18 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Await the params
+    const { userId } = await params;
+
     // Prevent admin from deleting themselves
-    if (session.user.id === params.userId) {
+    if (session.user.id === userId) {
       return NextResponse.json(
         { error: 'Cannot delete your own account' },
         { status: 400 }
       );
     }
 
-    const success = await deleteUser(params.userId);
+    const success = await deleteUser(userId);
 
     if (!success) {
       return NextResponse.json(

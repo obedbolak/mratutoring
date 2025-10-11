@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
 
+type UserRole = 'student' | 'teacher' | 'admin';
+
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  allowedRoles?: ('student' | 'teacher' | 'admin')[];
+  allowedRoles?: UserRole[];
   requireVerification?: boolean;
 }
 
@@ -29,7 +31,7 @@ export function ProtectedRoute({
     }
 
     // Check if user role is allowed
-    if (allowedRoles && !allowedRoles.includes(user.role as any)) {
+    if (allowedRoles && !allowedRoles.includes(user.role as UserRole)) {
       router.push('/dashboard');
       return;
     }
@@ -65,7 +67,7 @@ export function ProtectedRoute({
     return null;
   }
 
-  if (allowedRoles && !allowedRoles.includes(user.role as any)) {
+  if (allowedRoles && !allowedRoles.includes(user.role as UserRole)) {
     return null;
   }
 

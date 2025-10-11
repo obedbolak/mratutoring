@@ -5,7 +5,7 @@ import { updateUser } from '@/lib/auth-utils';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -14,6 +14,9 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Await the params
+    const { userId } = await params;
+
     const { role } = await request.json();
 
     if (!['student', 'teacher', 'admin'].includes(role)) {
@@ -21,14 +24,14 @@ export async function PUT(
     }
 
     // Prevent admin from changing their own role
-    if (session.user.id === params.userId) {
+    if (session.user.id === userId) {
       return NextResponse.json(
         { error: 'Cannot change your own role' },
         { status: 400 }
       );
     }
 
-    const user = await updateUser(params.userId, { role });
+    const user = await updateUser(userId, { role });
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });

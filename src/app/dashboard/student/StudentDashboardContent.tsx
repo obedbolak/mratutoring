@@ -19,7 +19,6 @@ import {
   TrendingUp,
   Award,
   Target,
-  MessageSquare,
   Bell,
   Search,
 } from 'lucide-react';
