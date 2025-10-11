@@ -22,6 +22,9 @@ import {
   Search,
   TrendingUp,
   Clock,
+  LayoutDashboard,
+  GraduationCap,
+  Shield,
 } from 'lucide-react';
 
 export default function Header() {
@@ -51,6 +54,87 @@ export default function Header() {
   ];
 
   const recentSearches = ['Algebra Basics', 'Science Project', 'History Notes'];
+
+  // Get dashboard link based on user role
+  const getDashboardLink = () => {
+    if (!user) return '/dashboard';
+
+    switch (user.role) {
+      case 'admin':
+        return '/dashboard/admin';
+      case 'teacher':
+        return '/dashboard/teacher';
+      case 'student':
+        return '/dashboard/student';
+      default:
+        return '/dashboard';
+    }
+  };
+
+  // Get dashboard icon based on user role
+  const getDashboardIcon = () => {
+    if (!user) return <LayoutDashboard className={`w-4 h-4 ${iconPrimary}`} />;
+
+    switch (user.role) {
+      case 'admin':
+        return <Shield className={`w-4 h-4 ${iconPrimary}`} />;
+      case 'teacher':
+        return <BookOpen className={`w-4 h-4 ${iconPrimary}`} />;
+      case 'student':
+        return <GraduationCap className={`w-4 h-4 ${iconPrimary}`} />;
+      default:
+        return <LayoutDashboard className={`w-4 h-4 ${iconPrimary}`} />;
+    }
+  };
+
+  // Get dashboard label based on user role
+  const getDashboardLabel = () => {
+    if (!user) return 'Dashboard';
+
+    switch (user.role) {
+      case 'admin':
+        return 'Admin Panel';
+      case 'teacher':
+        return 'Teacher Dashboard';
+      case 'student':
+        return 'My Dashboard';
+      default:
+        return 'Dashboard';
+    }
+  };
+
+  // Get role badge
+  const getRoleBadge = () => {
+    if (!user) return null;
+
+    const badges = {
+      admin: {
+        bg: 'bg-purple-100 dark:bg-purple-900/30',
+        text: 'text-purple-700 dark:text-purple-400',
+        label: 'Admin',
+      },
+      teacher: {
+        bg: 'bg-green-100 dark:bg-green-900/30',
+        text: 'text-green-700 dark:text-green-400',
+        label: 'Teacher',
+      },
+      student: {
+        bg: 'bg-blue-100 dark:bg-blue-900/30',
+        text: 'text-blue-700 dark:text-blue-400',
+        label: 'Student',
+      },
+    };
+
+    const badge = badges[user.role as keyof typeof badges] || badges.student;
+
+    return (
+      <span
+        className={`px-2 py-0.5 rounded-full text-xs font-medium ${badge.bg} ${badge.text}`}
+      >
+        {badge.label}
+      </span>
+    );
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -338,13 +422,16 @@ export default function Header() {
                             isDark ? 'border-slate-700' : 'border-slate-200'
                           }`}
                         >
-                          <p
-                            className={`text-sm font-medium ${
-                              isDark ? 'text-slate-200' : 'text-slate-900'
-                            }`}
-                          >
-                            {user?.name}
-                          </p>
+                          <div className="flex items-center justify-between mb-1">
+                            <p
+                              className={`text-sm font-medium ${
+                                isDark ? 'text-slate-200' : 'text-slate-900'
+                              }`}
+                            >
+                              {user?.name}
+                            </p>
+                            {getRoleBadge()}
+                          </div>
                           <p
                             className={`text-xs ${
                               isDark ? 'text-slate-400' : 'text-slate-500'
@@ -354,7 +441,7 @@ export default function Header() {
                           </p>
                         </div>
 
-                        <Link href="/dashboard" onClick={closeDropdown}>
+                        <Link href={getDashboardLink()} onClick={closeDropdown}>
                           <div
                             className={`w-full px-4 py-3 flex items-center gap-3 ${
                               isDark
@@ -362,8 +449,8 @@ export default function Header() {
                                 : 'text-slate-700 hover:bg-slate-50'
                             } transition-colors duration-200 cursor-pointer`}
                           >
-                            <BookOpen className={`w-4 h-4 ${iconPrimary}`} />
-                            <span>Dashboard</span>
+                            {getDashboardIcon()}
+                            <span>{getDashboardLabel()}</span>
                           </div>
                         </Link>
 
@@ -530,6 +617,29 @@ export default function Header() {
             } border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
+              {/* Show Dashboard link if authenticated */}
+              {isAuthenticated && (
+                <>
+                  <Link
+                    href={getDashboardLink()}
+                    onClick={toggleMobileMenu}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
+                      isDark
+                        ? 'text-indigo-400 bg-slate-700/50'
+                        : 'text-indigo-600 bg-indigo-50'
+                    }`}
+                  >
+                    {getDashboardIcon()}
+                    <span className="font-medium">{getDashboardLabel()}</span>
+                  </Link>
+                  <div
+                    className={`border-t my-2 ${
+                      isDark ? 'border-slate-700' : 'border-slate-200'
+                    }`}
+                  />
+                </>
+              )}
+
               <Link
                 href="/lessons"
                 onClick={toggleMobileMenu}
@@ -559,7 +669,35 @@ export default function Header() {
                 About
               </Link>
 
-              {!isAuthenticated && (
+              {isAuthenticated ? (
+                <div className="pt-4 space-y-2">
+                  <Link
+                    href="/settings"
+                    onClick={toggleMobileMenu}
+                    className="block"
+                  >
+                    <Button variant="ghost" className="w-full justify-start">
+                      <Settings className={`w-4 h-4 mr-2 ${iconPrimary}`} />
+                      Settings
+                    </Button>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      toggleMobileMenu();
+                      handleLogoutClick();
+                    }}
+                    className="w-full"
+                  >
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </button>
+                </div>
+              ) : (
                 <div className="pt-4 space-y-2">
                   <Link
                     href="/auth?mode=login"

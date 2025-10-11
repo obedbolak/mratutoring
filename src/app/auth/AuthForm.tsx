@@ -1291,6 +1291,7 @@ const AuthFormContent: React.FC = () => {
 
       if (result.success) {
         success('Successfully logged in!');
+        // Let the dashboard router handle the redirect
         router.push('/dashboard');
       } else {
         showError(result.error || 'Login failed');
@@ -1300,7 +1301,6 @@ const AuthFormContent: React.FC = () => {
       console.error('Auth error:', _error);
     }
   };
-
   const handleRegister = async () => {
     try {
       const result = await register({

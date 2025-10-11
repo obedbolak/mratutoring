@@ -70,10 +70,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (result?.ok) {
         console.log('✅ Login successful');
-        // Wait a bit for session to update
-        setTimeout(async () => {
-          await refreshUser();
-        }, 1000);
+        // Wait for session to update
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await refreshUser();
+
         return { success: true };
       }
 
@@ -85,7 +85,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setIsLoading(false);
     }
   };
-
   const register = async (userData: RegisterData): Promise<AuthResponse> => {
     try {
       setIsLoading(true);

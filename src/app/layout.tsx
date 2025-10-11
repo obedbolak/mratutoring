@@ -10,26 +10,26 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'MrAs - Master Your GCE Journey',
+    default: 'MrAs - Master Your Education Journey Online',
     template: '%s | MrAs',
   },
   description:
     'Excel in O-Level and A-Level exams with comprehensive online platform',
   keywords: ['education', 'GCE', 'O-Level', 'A-Level', 'exams'],
   authors: [{ name: 'MrAs Team' }],
-  creator: 'MrAs',
+  creator: 'MrAs Team',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mras.com',
-    title: 'MrAs - Master Your GCE Journey',
+    url: 'https://mratutoring.com',
+    title: 'MrAs - Master Your Education Journey Online',
     description:
       'Excel in O-Level and A-Level exams with comprehensive online platform',
-    siteName: 'MrAs',
+    siteName: 'MrAtutoring',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MrAs - Master Your GCE Journey',
+    title: 'MrAtutoring - Master Your Education Journey Online',
     description:
       'Excel in O-Level and A-Level exams with comprehensive online platform',
   },
