@@ -16,7 +16,6 @@
     "test:coverage": "jest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
